@@ -1,3 +1,7 @@
+# Multi Path Story Maker
+
+A small test application allowing the user to create multi path stories utilising mongoDB for storage and Express for application management. This app doesn't use any front-end JavaScript and handles all the action inside of the NodeJS server.
+
 ### Requirements
 
 -   MongoDB running instance, locally or remotely
