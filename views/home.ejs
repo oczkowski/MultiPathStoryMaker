@@ -7,7 +7,7 @@
     <h4>Your existing stories:</h4>
     <ul>
         <%- stories.map(story => `
-        <a href="/viewStory/${story.objectID}/">
+        <a href="/createStory/build/${story.objectID}/root">
             <li>${story.title}</li>
         </a>
         `).join('') %>
