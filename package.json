@@ -1,11 +1,14 @@
 {
-  "name": "multipathstorymaker",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Kamil Oczkowski",
-  "license": "ISC"
+    "name": "multipathstorymaker",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Kamil Oczkowski",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
 }
