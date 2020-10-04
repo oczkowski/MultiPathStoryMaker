@@ -3,14 +3,17 @@ const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const connectToDatabase = require('./mongo');
 
 // Libraries
 const moment = require('moment');
 
-// Importing routes
+// Home page
 const home = require('./routes/index');
-const viewStory = require('./routes/viewStory');
+
+// Importing routes
 const createStory = require('./routes/createStory');
+const viewStory = require('./routes/viewStory');
 
 // Application settings
 const appPort = 3000; // We're using port 3000 as it's the most common and it's out of root restricted range <1024
@@ -25,7 +28,7 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser()); // Add a cookie parser
-app.use((request, result, next) => {
+app.use(async (request, result, next) => {
     // Create an unique identification cookie
     const { appUniqueID } = request.cookies;
     // Cookie doesn't exist, generate
@@ -39,6 +42,16 @@ app.use((request, result, next) => {
             httpOnly: true,
             sameSite: 'strict',
         }); // This cookie should last 5 years
+
+        // Save to Mongo
+        const mongoDatabase = await connectToDatabase();
+        const users = mongoDatabase.collection('users');
+        await users.insertOne({
+            uniqueID,
+            storiesID: [], // Array of MongoDB entries in stories collection
+        });
+
+        // Debug
         console.log(`New user joined with ID ${uniqueID}`);
     }
     // Continue
@@ -48,12 +61,12 @@ app.use((request, result, next) => {
 // Make public assets available for front-end users
 app.use(express.static(__dirname + '/public'));
 
-// Home route and router
+// Home route and pages
 app.get('/', home);
 
 // Routing
+app.use('/createStory', createStory);
 // app.get('/viewStory/:id/:path', viewStory);
-// app.get('/createStory', createStory);
 
 // Setup application HTTP handler
 app.listen(appPort, appHost, () => {
