@@ -1,8 +1,59 @@
 <%- include('../partials/header'); %>
 <h4>Build a story</h4>
-<span>Input story step, then click submit to save.</span>
-<form method="POST" action="/createStory/new">
-    <span>Story Name: <input type="text" name="title" /></span>
-    <button type="submit">Create!</button>
-</form>
+<span>Input story step, then click button to save.</span>
+<!-- {
+    storyID,
+    currentPath,
+    currentTitle,
+    currentStory,
+} -->
+<table class="storyTable">
+    <tr>
+        <td></td>
+        <td class="usedCell">
+            <form
+                method="POST"
+                action="/createStory/build/<%= `${storyID}/${currentPath}` %>"
+            >
+                <input type="text" name="story0" /><br />
+                <button type="submit">Save</button>
+            </form>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="usedCell">
+            <form
+                method="POST"
+                action="/createStory/build/<%= `${storyID}/${currentPath}` %>"
+            >
+                <input type="text" name="story1" /><br />
+                <button type="submit">Save</button>
+            </form>
+        </td>
+        <td class="usedCell storyTitle"><%= currentTitle %></td>
+        <td class="usedCell">
+            <form
+                method="POST"
+                action="/createStory/build/<%= `${storyID}/${currentPath}` %>"
+            >
+                <input type="text" name="story2" /><br />
+                <button type="submit">Save</button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="usedCell">
+            <form
+                method="POST"
+                action="/createStory/build/<%= `${storyID}/${currentPath}` %>"
+            >
+                <input type="text" name="story3" /><br />
+                <button type="submit">Save</button>
+            </form>
+        </td>
+        <td></td>
+    </tr>
+</table>
 <%- include('../partials/footer'); %>

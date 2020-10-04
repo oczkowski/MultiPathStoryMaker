@@ -5,3 +5,17 @@ body {
     background-color: #fdfdfd;
     padding: 5px 0px 0px 25px;
 }
+
+.storyTable {
+    border-collapse: collapse;
+}
+
+.storyTable storyTitle {
+    font-weight: bold;
+}
+
+.storyTable .usedCell {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+}
