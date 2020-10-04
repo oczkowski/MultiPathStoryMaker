@@ -1,6 +1,12 @@
 // Import mongo connect function
 const { connect } = require('mongodb');
 
+// Libraries
+const moment = require('moment');
+
+// Useful vars
+const dnt = moment().format('HH:mm D MMM');
+
 /**
  * All mongo settings are here, since it's a small application
  * there is no need for a .env file.
@@ -28,13 +34,15 @@ const connectToDatabase = async () =>
         ) {
             // Connection error
             if (error) {
-                console.log(`Error whilst connecting to MongoDB, ${err}`);
+                console.log(
+                    `[${dnt}] Error whilst connecting to MongoDB, ${err}`
+                );
                 reject(error);
             }
 
             // Connection successful
             console.log(
-                `Connected to MongoDB at ${HOSTNAME}:${PORT} successful!`
+                `[${dnt}] Connected to MongoDB at ${HOSTNAME}:${PORT} successful!`
             );
             const DATABASE = client.db(DATABASE_NAME);
             resolve(DATABASE);
