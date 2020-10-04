@@ -1,0 +1,14 @@
+<%- include('./partials/header'); %>
+<h2>Welcome to the Multi Path Story Maker!</h2>
+<button>Create a new story!</button>
+<div>
+    <h4>Your existing stories:</h4>
+    <ul>
+        <%- stories.map(story => `
+        <a href="/viewStory/${story.objectID}/">
+            <li>${story.title}</li>
+        </a>
+        `).join('') %>
+    </ul>
+</div>
+<%- include('./partials/footer'); %>
