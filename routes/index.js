@@ -1,5 +1,7 @@
+const connectToDatabase = require('../mongo');
+
 // Home route
-function homeRoute(request, response) {
+async function homeRoute(request, response) {
     /**
      * Here, we are displaying a list of already existing stories.
      * Stories are stored per browser/cookie ID. This ID is randomly generated on each new user visit.
@@ -8,14 +10,23 @@ function homeRoute(request, response) {
     // Get user unique ID from cookie
     const { appUniqueID } = request.cookies;
 
+    // Find user
+    const mongoDatabase = await connectToDatabase();
+    const users = mongoDatabase.collection('users');
+    const user = await users.findOne({ uniqueID: Number(appUniqueID) });
+
+    // Get user stories
+    const stories = mongoDatabase.collection('stories');
+    const userStories = await stories
+        .find({ _id: { $in: user.storiesID } })
+        .toArray();
+
     // Pull user stories to display as a list
     response.render('home', {
-        stories: [
-            {
-                title: 'Test story',
-                objectID: 'mongoDBID',
-            },
-        ],
+        stories: userStories.map(({ title, _id }) => ({
+            title,
+            objectID: _id,
+        })),
     });
 }
 
