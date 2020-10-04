@@ -13,7 +13,6 @@ const home = require('./routes/index');
 
 // Importing routes
 const createStory = require('./routes/createStory');
-const viewStory = require('./routes/viewStory');
 
 // Application settings
 const appPort = 3000; // We're using port 3000 as it's the most common and it's out of root restricted range <1024

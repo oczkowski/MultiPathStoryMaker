@@ -91,14 +91,11 @@ router.get('/build/:storyID/:currentPath', async function buildStory(
     var currentStory = currentObject.story;
     var currentTitle = currentObject.title;
 
-    console.log(currentObject);
-    console.log(currentTitle);
-    console.log(currentStory);
-
     // Once created, redirect to builder passing in the story ID
     result.render('createStory/build', {
         storyID,
         currentPath,
+        pathArray: currentPath.split('.').slice(1),
         currentTitle,
         currentStory,
     });
@@ -142,8 +139,6 @@ router.post('/build/:storyID/:currentPath', async function buildStory(
     // Add new story to object
     const pathArray = currentPath.split('.').slice(1); // We remove the first one as it's the root access
     var currentObject = storyInstance;
-    var currentStory;
-    var currentTitle;
     do {
         let propertyForAccess = pathArray.shift(); // For the purpose of this application this value will be 0, 1, 2 or 3.
 
