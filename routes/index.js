@@ -16,10 +16,14 @@ async function homeRoute(request, response) {
     const user = await users.findOne({ uniqueID: Number(appUniqueID) });
 
     // Get user stories
-    const stories = mongoDatabase.collection('stories');
-    const userStories = await stories
-        .find({ _id: { $in: user.storiesID } })
-        .toArray();
+    if (user) {
+        const stories = mongoDatabase.collection('stories');
+        var userStories = await stories
+            .find({ _id: { $in: user.storiesID } })
+            .toArray();
+    } else {
+        var userStories = [];
+    }
 
     // Pull user stories to display as a list
     response.render('home', {

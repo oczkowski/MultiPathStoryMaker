@@ -47,7 +47,7 @@ app.use(async (request, result, next) => {
         const mongoDatabase = await connectToDatabase();
         const users = mongoDatabase.collection('users');
         await users.insertOne({
-            uniqueID,
+            uniqueID: Number(uniqueID),
             storiesID: [], // Array of MongoDB entries in stories collection
         });
 

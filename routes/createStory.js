@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const connectToDatabase = require('../mongo');
+const ObjectID = require('mongodb').ObjectID;
 
 // Routes
 
@@ -13,8 +14,8 @@ router.get('/new', function createNewStory(request, result) {
     result.render('createStory/new');
 });
 
-// Build a story - this creates a new story in the database and starts the bulding process
-router.post('/build', async function createNewStory(request, result) {
+// Create a story - this creates a new story in the database and redirects to the bulding process
+router.post('/new', async function createNewStory(request, result) {
     // Get story title
     const { title } = request.body;
 
@@ -45,8 +46,49 @@ router.post('/build', async function createNewStory(request, result) {
         { $addToSet: { storiesID: insertedId } }
     );
 
-    // Render story creating page
-    result.render('createStory/new');
+    // Once created, redirect to builder passing in the story ID
+    result.redirect(`/createStory/build/${insertedId}/root`);
+});
+
+// Story building process
+router.get('/build/:storyID/:currentPath', async function createNewStory(
+    request,
+    result
+) {
+    // Get story details
+    const { storyID, currentPath } = request.params;
+
+    /**
+     * NOTE: There is protection against other user accessing and editing somebody elses stories.
+     * In a real world application an authentication system would be involved.
+     */
+
+    // Let's try looking for a story with that ID
+    const mongoDatabase = await connectToDatabase();
+    const stories = mongoDatabase.collection('stories');
+
+    const storyInstance = storyID
+        ? await stories.findOne({ _id: ObjectID(storyID) })
+        : false;
+
+    // Does story exist?
+    if (!story) {
+        result.redirect('/createStory/new');
+    }
+
+    // Access current story path
+    const pathArray = currentPath.split('.').slice(1); // We remove the first one as it's the root access
+    var currentObject = storyInstance.story;
+    do {
+        let propertyForAccess = pathArray.shift();
+        currentObject =
+            propertyForAccess !== undefined
+                ? currentObject[propertyForAccess]
+                : currentObject;
+    } while (pathArray.length);
+
+    // Once created, redirect to builder passing in the story ID
+    result.render('createStory/build', { storyID, currentPath });
 });
 
 // Return route set
