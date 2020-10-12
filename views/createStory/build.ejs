@@ -12,14 +12,11 @@
         <td></td>
         <td class="usedCell">
             <%- currentStory['0'] ? `
-            <a href="./createStory/build/${storyID}/${currentPath}.0"
+            <a href="../../${storyID}/${currentPath}.0"
                 >${currentStory['0'].title}
             </a>
             ` : `
-            <form
-                method="POST"
-                action="./createStory/build/${storyID}/${currentPath}"
-            >
+            <form method="POST" action="../../${storyID}/${currentPath}">
                 <input type="text" name="story0" /><br />
                 <button type="submit">Save</button>
             </form>
@@ -30,14 +27,11 @@
     <tr>
         <td class="usedCell">
             <%- currentStory['1'] ? `
-            <a href="./createStory/build/${storyID}/${currentPath}.1"
+            <a href="../../${storyID}/${currentPath}.1"
                 >${currentStory['1'].title}
             </a>
             ` : `
-            <form
-                method="POST"
-                action="./createStory/build/${storyID}/${currentPath}"
-            >
+            <form method="POST" action="../../${storyID}/${currentPath}">
                 <input type="text" name="story1" /><br />
                 <button type="submit">Save</button>
             </form>
@@ -46,14 +40,11 @@
         <td class="usedCell storyTitle"><%= currentTitle %></td>
         <td class="usedCell">
             <%- currentStory['2'] ? `
-            <a href="./createStory/build/${storyID}/${currentPath}.2"
+            <a href="../../${storyID}/${currentPath}.2"
                 >${currentStory['2'].title}
             </a>
             ` : `
-            <form
-                method="POST"
-                action="./createStory/build/${storyID}/${currentPath}"
-            >
+            <form method="POST" action="../../${storyID}/${currentPath}">
                 <input type="text" name="story2" /><br />
                 <button type="submit">Save</button>
             </form>
@@ -64,14 +55,11 @@
         <td></td>
         <td class="usedCell">
             <%- currentStory['3'] ? `
-            <a href="./createStory/build/${storyID}/${currentPath}.3"
+            <a href="../../${storyID}/${currentPath}.3"
                 >${currentStory['3'].title}
             </a>
             ` : `
-            <form
-                method="POST"
-                action="./createStory/build/${storyID}${currentPath}"
-            >
+            <form method="POST" action="../../${storyID}${currentPath}">
                 <input type="text" name="story3" /><br />
                 <button type="submit">Save</button>
             </form>
@@ -82,7 +70,7 @@
 </table>
 <%- pathArray.length ? `
 <a
-    href="./createStory/build/${storyID}/root${pathArray.length > 1 ? '.':''}${pathArray.filter((path, index) => pathArray.length-1 !== index).join('.')}"
+    href="../../${storyID}/root${pathArray.length > 1 ? '.':''}${pathArray.filter((path, index) => pathArray.length-1 !== index).join('.')}"
 >
     <button>Go Back</button>
 </a>
