@@ -18,7 +18,7 @@ EXPOSE 3000
 ENV PORT=3000
 
 # Database details
-ENV MONGO_HOST=127.0.0.1
+ENV MONGO_HOST=10.5.0.6
 ENV MONGO_PORT=27018
 
 # Start the application
