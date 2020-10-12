@@ -12,13 +12,13 @@ RUN npm install
 COPY . .
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 3000
 
 # Set the application to run of port 80 (Note: you might need root privileges)
-ENV PORT=80
+ENV PORT=3000
 
 # Database details
-ENV MONGO_HOST=localhost
+ENV MONGO_HOST=127.0.0.1
 ENV MONGO_PORT=27017
 
 # Start the application

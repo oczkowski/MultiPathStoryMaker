@@ -5,11 +5,13 @@ services:
     restart: always
     build: .
     ports:
-      - 7086:80
+      - 7086:3000
     links:
       - mongo
   mongo:
     container_name: mpsm-mongo
-    image: mongo
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=MultiPathStoryMaker
     ports:
-      - "27018:27017"
+      - "27017-27019:27017-27019"
