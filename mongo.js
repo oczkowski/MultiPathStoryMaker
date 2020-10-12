@@ -13,7 +13,7 @@ const dnt = moment().format('HH:mm D MMM');
  */
 
 // Settings
-const HOSTNAME = '0.0.0.0';
+const HOSTNAME = process.env.MONGO_HOST || '0.0.0.0';
 const PORT = process.env.MONGO_PORT || 27017;
 const DATABASE_NAME = 'MultiPathStoryMaker';
 

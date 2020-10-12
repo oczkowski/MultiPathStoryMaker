@@ -17,8 +17,9 @@ EXPOSE 80
 # Set the application to run of port 80 (Note: you might need root privileges)
 ENV PORT=80
 
-# Database port
-ENV MONGO_PORT=27018
+# Database details
+ENV MONGO_HOST=localhost
+ENV MONGO_PORT=27017
 
 # Start the application
 CMD [ "npm", "start" ];
