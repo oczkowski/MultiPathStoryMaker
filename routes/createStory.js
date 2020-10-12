@@ -47,7 +47,7 @@ router.post('/new', async function createNewStory(request, result) {
     );
 
     // Once created, redirect to builder passing in the story ID
-    result.redirect(`/createStory/build/${insertedId}/root`);
+    result.redirect(`build/${insertedId}/root`);
 });
 
 // Story building process
