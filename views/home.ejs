@@ -1,13 +1,13 @@
 <%- include('./partials/header'); %>
 <h2>Welcome to the Multi Path Story Maker!</h2>
-<a href="/createStory/new">
+<a href="./createStory/new">
     <button>Create a new story!</button>
 </a>
 <div>
     <h4>Your existing stories:</h4>
     <ul>
         <%- stories.map(story => `
-        <a href="/createStory/build/${story.objectID}/root">
+        <a href="./createStory/build/${story.objectID}/root">
             <li>${story.title}</li>
         </a>
         `).join('') %>
