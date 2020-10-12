@@ -4,7 +4,7 @@ A small test application allowing the user to create multi path stories utilisin
 
 ### Requirements
 
--   MongoDB running instance, locally or remotely
+-   MongoDB running instance, locally or remotely (Installation instructions found [here](https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials))
 -   Node 10 or above
 -   At least one network adapter and connect Mongo to the application
 
