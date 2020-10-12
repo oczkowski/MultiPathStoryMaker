@@ -15,8 +15,8 @@ const home = require('./routes/index');
 const createStory = require('./routes/createStory');
 
 // Application settings
-const appPort = 3000; // We're using port 3000 as it's the most common and it's out of root restricted range <1024
-const appHost = '0.0.0.0'; // Host on all available interfaces
+const appPort = process.env.PORT || 3000; // We're using port 3000 as it's the most common and it's out of root restricted range <1024
+const appHost = process.env.HOST || '0.0.0.0'; // Host on all available interfaces
 
 // Useful vars
 const dnt = moment().format('HH:mm D MMM');

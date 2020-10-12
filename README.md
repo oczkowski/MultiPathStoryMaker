@@ -2,9 +2,14 @@
 
 A small test application allowing the user to create multi path stories utilising MongoDB for storage and Express for application management. This app doesn't use any front-end JavaScript and handles all the action inside of the NodeJS server.
 
+### Live Demo
+
+Can be found here => [https://projects.oczkow.ski/multi-path-story-maker](https://projects.oczkow.ski/multi-path-story-maker)
+
 ### Requirements
 
 -   MongoDB running instance, locally or remotely (Installation instructions found [here](https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials))
+-   MongoDB Client (Compass) for creating the empty tables (Installation and usage found [here](https://www.mongodb.com/try/download/compass)
 -   Node 10 or above
 -   At least one network adapter and connect Mongo to the application
 
