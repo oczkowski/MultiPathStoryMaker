@@ -25,6 +25,8 @@ const PASSWORD = '';
 const authString = USERNAME && PASSWORD ? `${USERNAME}:${PASSWORD}@` : '';
 const mongoURL = `mongodb://${authString}${HOSTNAME}:${PORT}`;
 
+console.log(`Connecting to mongo using: ${mongoURL}`);
+
 // Connect function - Returns an instance of conenction to MongoDB Database
 const connectToDatabase = async () =>
     new Promise((resolve, reject) => {
