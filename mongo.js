@@ -35,7 +35,7 @@ const connectToDatabase = async () =>
             // Connection error
             if (error) {
                 console.log(
-                    `[${dnt}] Error whilst connecting to MongoDB, ${err}`
+                    `[${dnt}] Error whilst connecting to MongoDB, ${error}`
                 );
                 reject(error);
             }
