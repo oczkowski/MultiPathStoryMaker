@@ -133,7 +133,7 @@ router.post('/build/:storyID/:currentPath', async function buildStory(
 
     // Does story exist?
     if (!storyInstance) {
-        result.redirect('/createStory/new');
+        result.redirect('../../new');
     }
 
     // Add new story to object
@@ -164,7 +164,7 @@ router.post('/build/:storyID/:currentPath', async function buildStory(
     );
 
     // Redirect back to building
-    result.redirect(`/createStory/build/${storyID}/${currentPath}`);
+    result.redirect(`../${storyID}/${currentPath}`);
 });
 
 // Return route set
