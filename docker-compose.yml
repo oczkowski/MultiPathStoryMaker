@@ -11,7 +11,8 @@ services:
   mongo:
     container_name: mpsm-mongo
     image: mongo:latest
+    command: mongod --port 27018
     environment:
       - MONGO_INITDB_DATABASE=MultiPathStoryMaker
     ports:
-      - "27017-27019:27017-27019"
+      - "27018:27018"
